@@ -4,7 +4,8 @@
   "description": "A Node.js and AngularJs contacts app",
   "main": "server/agenda.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "nodemon server/agenda.js"
   },
   "repository": {
     "type": "git",
