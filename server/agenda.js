@@ -26,6 +26,7 @@ var app = express();
  */
 
 app.set('port', process.env.PORT || config.port);
+app.set('db', config.db);
 app.set('public folder', path.join(__dirname, '../public'));
 
 /**
@@ -49,8 +50,18 @@ if(env === 'development') {
 }
 
 /**
+ * Database
+ */
+
+mongoose.connect(app.get('db'))
+
+/**
  * Routes
  */
+
+var contactsAPI = require('./modules/contacts/routes');
+
+app.use('/api/contacts', contactsAPI);
 
 app.get('/', function(req, res) {
   res.json(app.get('public folder'));
