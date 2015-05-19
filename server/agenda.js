@@ -54,7 +54,7 @@ if(env === 'development') {
 
 app.get('/', function(req, res) {
   res.json(app.get('public folder'));
-})
+});
 
 /**
  * Bootstrap
