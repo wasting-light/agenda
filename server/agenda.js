@@ -53,7 +53,7 @@ if(env === 'development') {
  * Database
  */
 
-mongoose.connect(app.get('db'))
+mongoose.connect(app.get('db'));
 
 /**
  * Routes

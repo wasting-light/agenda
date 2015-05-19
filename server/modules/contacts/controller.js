@@ -14,7 +14,7 @@ module.exports = {
   findOne: findOne,
   update: update,
   remove: remove
-}
+};
 
 /**
  * Create a new contact
