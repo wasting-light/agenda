@@ -1,0 +1,21 @@
+{
+  "name": "agenda",
+  "version": "0.1.0",
+  "homepage": "https://github.com/grvcoelho/agenda",
+  "authors": [
+    "Guilherme Rv Coelho <guilhermervcoelho@gmail.com>"
+  ],
+  "description": "A Node & Angular contacts app",
+  "main": "browser/index.html",
+  "keywords": [
+    "agenda"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
