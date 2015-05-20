@@ -63,12 +63,6 @@ var contactsAPI = require('./modules/contacts/routes');
 
 app.use('/api/contacts', contactsAPI);
 
-app.get('*', function(req, res) {
-  var index = path.join(app.get('public folder'), 'index.html');
-  
-  res.sendFile(index);
-});
-
 /**
  * Bootstrap
  */
