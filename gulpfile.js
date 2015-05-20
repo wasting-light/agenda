@@ -44,7 +44,12 @@ gulp.task('watch', ['angular', 'copy', 'scripts', 'stylus'], function() {
  */
 
 gulp.task('angular', function() {
-  var files = ['./browser/app/**/*.js'];
+  var files = [
+    './browser/app/**/*.module.js',
+    './browser/app/**/*.service.js',
+    './browser/app/**/*.controller.js',
+    './browser/app/**/*.directive.js'
+  ];
 
   return gulp
     .src(files)
