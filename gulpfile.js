@@ -7,6 +7,7 @@ var gulp       = require('gulp');
 var jeet       = require('jeet');
 var jshint     = require('gulp-jshint');
 var kouto      = require('kouto-swiss');
+var ngAnnotate = require('gulp-ng-annotate');
 var plumber    = require('gulp-plumber');
 var rename     = require('gulp-rename');
 var rupture    = require('rupture');
@@ -47,17 +48,20 @@ gulp.task('angular', function() {
   var files = [
     './browser/app/agenda.js',
     './browser/app/**/module.js',
-    './browser/app/**/controllers.js',
-    './browser/app/**/services.js',
-    './browser/app/**/directives.js',
+    './browser/app/**/routes.js',
+    './browser/app/**/controllers/*.js',
+    './browser/app/**/services/*.js',
+    './browser/app/**/directives/*.js',
   ];
 
   return gulp
     .src(files)
     .pipe(plumber())
+    .pipe(ngAnnotate())
     .pipe(sourcemaps.init())
     .pipe(concat('app.js'))
     .pipe(sourcemaps.write())
+    // .pipe(uglify())
     .pipe(gulp.dest('./public/assets/js'));
 });
 
