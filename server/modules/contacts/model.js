@@ -15,11 +15,6 @@ var ContactSchema = new Schema({
     default: ''
   },
 
-  avatar: {
-    type: String,
-    default: ''
-  },
-
   phone: {
     type: String,
     default: ''

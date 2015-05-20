@@ -15,7 +15,40 @@
 
 <body>
 
-  <div ui-view></div>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>
+        <md-icon md-svg-icon="menu"></md-icon>
+        Agenda
+      </h2>
+
+      <span flex></span>
+
+      <md-button class="md-toolbar-item" ng-href="#/">
+        Home
+      </md-button>
+
+      <md-button class="md-toolbar-item" ng-href="#/login">
+        Login
+      </md-button>
+
+      <md-button class="md-toolbar-item" ng-href="#/signup">
+        Sign Up
+      </md-button>
+
+      <md-button class="md-toolbar-item" ng-href="#/logout">
+        Logout
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-content id="mainContent">
+    <div layout="row" layout-align="center center" flex style="height: 100%">
+      <md-whiteframe class="md-whiteframe-z1" style="width: 50%; padding: 3rem; background: white;">
+        <div ui-view></div>
+      </md-whiteframe>
+    </div>
+  </md-content>
 
   <!-- Angular dependencies -->
   <script src="components/angular/angular.min.js"></script>
