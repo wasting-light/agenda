@@ -21,11 +21,27 @@
   function contactsService($http, $q) {
     var baseUrl = '/api/contacts/';
 
-    // this.create   = create;
+    this.create   = create;
     this.retrieve = retrieve;
     // this.findOne  = findOne;
     // this.update   = update;
     // this.remove   = remove;
+
+    function create(body) {
+      var defer = $q.defer();
+
+      $http
+        .post('/api/contacts/', body)
+        .success(function(data, status) {
+          defer.resolve({data: data, status: status});
+        })
+        .error(function(data, status) {
+          defer.reject({data: data, status: status});
+        });
+
+      return defer.promise;
+    }
+
 
     function retrieve() {
       var defer = $q.defer();

@@ -21,23 +21,23 @@
   function config($stateProvider, $urlRouterProvider, $authProvider) {
     $urlRouterProvider.rule(normalizeRoute);
 
-    $stateProvider.state('users-list', {
-      url: '/users/',
-      templateUrl: 'views/users/list.html',
+    $stateProvider.state('contacts-list', {
+      url: '/contacts/',
+      templateUrl: 'views/contacts/list.html',
       controller: 'ContactsListController',
       controllerAs: 'vm'
     });
 
-    $stateProvider.state('users-create', {
-      url: '/users/create/',
-      templateUrl: 'views/users/create.html',
+    $stateProvider.state('contacts-create', {
+      url: '/contacts/create/',
+      templateUrl: 'views/contacts/create.html',
       controller: 'ContactsCreateController',
       controllerAs: 'vm'
     });
 
-    $stateProvider.state('users-show', {
-      url: '/users/:id/',
-      templateUrl: 'views/users/show.html',
+    $stateProvider.state('contacts-show', {
+      url: '/contacts/:id/',
+      templateUrl: 'views/contacts/show.html',
       controller: 'ContactsShowController',
       controllerAs: 'vm'
     });

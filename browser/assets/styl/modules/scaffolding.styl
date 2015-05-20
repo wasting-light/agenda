@@ -1,6 +1,23 @@
+html
 body
+  height 100%
+  margin 0
   background $grey-200
+  font-size 16px
 
 #mainContent
-  height calc(100% - 30px)
+  margin-top 3rem
+  padding-bottom .5rem
   background transparent
+
+md-whiteframe
+  width 70%
+  padding 3rem
+  background white
+  +above('md')
+    width 55%
+  +above('lg')
+    width 40%
+
+pre
+  word-wrap break-word
