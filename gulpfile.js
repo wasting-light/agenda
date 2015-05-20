@@ -52,27 +52,13 @@ function angular() {
 }
 
 /**
- * Concat and minify the scripts
- */
-
-function scripts() {
-  var files = ['./browser/assets/js/**/*.js'];
-
-  gulp
-    .src(files)
-    .pipe(plumber())
-    .pipe(concat('app.js'))
-    .pipe(gulp.dest('./public/assets/js'));
-}
-
-/**
  * Copy html files to public folder
  *
  * @api public
  */
 
 function copy() {
-  var files = ['./browser/**/*.html'];
+  var files = ['./browser/**/*.html', './browser/**/*.{png,jpg,svg}'];
 
   gulp
     .src(files)
@@ -111,4 +97,18 @@ function lintBrowser() {
     .pipe(watch(files))
     .pipe(jshint())
     .pipe(jshint.reporter(stylish))
+}
+
+/**
+ * Concat and minify the scripts
+ */
+
+function scripts() {
+  var files = ['./browser/assets/js/**/*.js'];
+
+  gulp
+    .src(files)
+    .pipe(plumber())
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest('./public/assets/js'));
 }
