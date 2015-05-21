@@ -60,8 +60,10 @@ mongoose.connect(app.get('db'));
  */
 
 var contactsAPI = require('./modules/contacts/routes');
+var usersAPI    = require('./modules/users/routes');
 
 app.use('/api/contacts', contactsAPI);
+app.use('/api/users', usersAPI);
 
 /**
  * Bootstrap

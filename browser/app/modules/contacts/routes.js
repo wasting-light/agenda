@@ -19,8 +19,6 @@
    */
 
   function config($stateProvider, $urlRouterProvider, $authProvider) {
-    $urlRouterProvider.rule(normalizeRoute);
-
     $stateProvider.state('contacts-list', {
       url: '/contacts/',
       templateUrl: 'views/contacts/list.html',
@@ -48,20 +46,6 @@
       controller: 'ContactsEditController',
       controllerAs: 'vm'
     });
-  }
-
-  /**
-   * Normalize the paths that don't have a trailing slash
-   *
-   * @api private
-   */
-
-  function normalizeRoute($injector, $location) {
-    var path = $location.path();
-
-    if(path.substr(-1) !== '/') {
-      return path + '/';
-    }
   }
 
 })(angular);
