@@ -16,22 +16,51 @@
    * @api public
    */
 
-  function ContactsEditController(contactsService, contactPrepService) {
+  function ContactsEditController($stateParams, contactsService) {
     var vm = this;
+    vm.isLoading = false;
 
-    vm.contact = contactPrepService.data;
-
+    vm.activate = activate;
     vm.update = update;
+
+    vm.activate();
+
+    /**
+     * Activate the controller
+     *
+     * @api public
+     */
+
+    function activate() {
+      var id = $stateParams.id;
+      vm.isLoading = true;
+
+      contactsService.findOne(id)
+        .then(function(res) {
+          vm.contact = res.data;
+          vm.isLoading = false;
+        })
+        .catch(function(res) {
+          vm.isLoading = false;
+        });
+    }
+
+    /**
+     * Update a contact
+     *
+     * @api public
+     */
 
     function update() {
       var id = $stateParams.id;
+      vm.isLoading = true;
 
       contactsService.update(id, vm.contact)
         .then(function(res) {
-          $log.info('Contact updated successfully');
+          vm.isLoading = false;
         })
         .catch(function(res) {
-          $log.error('Error updating contact');
+          vm.isLoading = false;
         });
     }
   }

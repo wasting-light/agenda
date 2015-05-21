@@ -16,28 +16,34 @@
    * @api public
    */
 
-  function ContactsCreateController($log, contactsService) {
+  function ContactsCreateController(contactsService) {
     var vm = this;
-    var Contact = contactsService;
-
+    vm.isLoading = false;
     vm.newContact = {
-      name: 'Guilherme',
-      phone: '1140382629',
-      email: 'gui@gmail.com',
-      address: 'Rua Rio Jundiaí, 225',
+      name: '',
+      phone: '',
+      email: '',
+      address: '',
       isFavorite: false
     };
 
     vm.create = create;
 
+    /**
+     * Create a new contact
+     *
+     * @api public
+     */
+
     function create(contact) {
-      Contact
-        .create(vm.newContact)
+      vm.isLoading = true;
+
+      contactsService.create(contact)
         .then(function(res) {
-          $log.info('Contact created successfully');
+          vm.isLoading = false;
         })
         .catch(function(res) {
-          $log.error('Error creating contact');
+          vm.isLoading = false;
         });
     }
   }

@@ -1,4 +1,6 @@
-<h1>Create a new contact!</h1>
+<div layout="row" layout-align="center center" ng-if="vm.isLoading">
+  <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+</div>
 
 <form ng-submit="vm.create(vm.newContact)">
   <div layout="row">

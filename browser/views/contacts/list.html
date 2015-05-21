@@ -1,14 +1,28 @@
-<h1>Hello, users!</h1>
+<div layout="row" layout-align="center center" ng-if="vm.isLoading">
+  <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+</div>
 
-<table border="1">
-  <tr ng-repeat="contact in vm.contacts">
-    <td>
-      <a href="#/contacts/{{contact._id}}">
-        {{contact.name}}
-      </a>
-    </td>
-    <td ng-click="vm.remove(contact._id)">
-      <md-icon md-svg-icon="remove"></md-icon>
-    </td>
-  </tr>
-</table>
+<div ng-if="vm.contacts">
+  <h1>All contacts</h1>
+
+  <table border="1" ng-if="vm.contacts.length">
+    <tr ng-repeat="contact in vm.contacts">
+      <td>
+        <a href="#/contacts/{{contact._id}}">
+          {{contact.name}}
+        </a>
+      </td>
+      <td ng-click="vm.remove(contact._id, $index)">
+        <md-icon md-svg-icon="remove"></md-icon>
+      </td>
+    </tr>
+  </table>
+
+  <div ng-if="!vm.contacts.length">
+    <h3>No contacts :(</h3>
+
+    <md-button class="md-primary md-raised" ng-href="#/contacts/create/">
+      Create a contact now
+    </md-button>
+  </div>
+</div>

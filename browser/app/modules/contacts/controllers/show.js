@@ -16,10 +16,33 @@
    * @api public
    */
 
-  function ContactsShowController(contactPrepService) {
+  function ContactsShowController($stateParams, contactsService) {
     var vm = this;
+    vm.isLoading = false;
 
-    vm.contact = contactPrepService.data;
+    vm.activate = activate;
+
+    vm.activate();
+
+    /**
+     * Activate the controller
+     *
+     * @api public
+     */
+
+    function activate() {
+      var id = $stateParams.id;
+      vm.isLoading = true;
+
+      contactsService.findOne(id)
+        .then(function(res) {
+          vm.contact = res.data;
+          vm.isLoading = false;
+        })
+        .catch(function(res) {
+          vm.isLoading = false;
+        });
+    }
   }
 
 })(angular);

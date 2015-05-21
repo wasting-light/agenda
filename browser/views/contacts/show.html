@@ -1,7 +1,13 @@
-<h1>Show a user!</h1>
+<div layout="row" layout-align="center center" ng-if="vm.isLoading">
+  <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+</div>
 
-<pre>
-  {{vm.contact}}
-</pre>
+<div ng-if="vm.contact">
+  <h1>Show a user!</h1>
 
-<a href="#/contacts/{{vm.contact._id}}/edit/">Edit</a>
+  <pre>
+    {{vm.contact}}
+  </pre>
+
+  <a href="#/contacts/{{vm.contact._id}}/edit/">Edit</a>
+</div>
