@@ -15,7 +15,7 @@ var UserSchema = new Schema({
     default: ''
   },
 
-  phone: {
+  avatar: {
     type: String,
     default: ''
   },
@@ -23,16 +23,6 @@ var UserSchema = new Schema({
   email: {
     type: String,
     default: ''
-  },
-
-  address: {
-    type: String,
-    default: ''
-  },
-
-  isFavorite: {
-    type: Boolean,
-    default: false
   },
 
   created_at: {
