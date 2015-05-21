@@ -10,11 +10,8 @@ var User = require('../users/model');
  */
 
 module.exports = {
-  create: create,
-  retrieve: retrieve,
-  findOne: findOne,
-  update: update,
-  remove: remove
+  login: login,
+  signup: signup
 };
 
 /**
@@ -26,7 +23,7 @@ module.exports = {
  * @api public
  */
 
-function create(req, res, callback) {
+function login(req, res, callback) {
   var query = {
     email: req.body.email
   };
@@ -34,15 +31,20 @@ function create(req, res, callback) {
   User.findOne(query, '+password', function(err, user) {
     if(!user) {
       callback(err, {}, 401, res);
+      return;
     }
 
     user.comparePassword(req.body.password, function(err, isMatch) {
       if(!isMatch) {
         callback(err, {}, 401, res);
+        return;
       }
 
+      user.password = undefined;
+
       var data = {
-        token: token.createToken(user._id)
+        token: token.create(user._id),
+        user: user
       };
 
       callback(err, data, 200, res);
@@ -59,7 +61,7 @@ function create(req, res, callback) {
  * @api public
  */
 
-function retrieve(req, res, callback) {
+function signup(req, res, callback) {
   var query = {
     email: req.body.email
   };
@@ -67,13 +69,17 @@ function retrieve(req, res, callback) {
   User.findOne(query, '+password', function(err, existingUser) {
     if(existingUser) {
       callback(err, {}, 409, res);
+      return;
     }
 
     var user = new User(req.body);
 
-    user.save(function() {
+    user.save(function(err, user) {
+      user.password = undefined;
+
       var data = {
-        token: token.createToken(user._id)
+        token: token.create(user._id),
+        user: user
       };
 
       callback(err, data, 200, res);

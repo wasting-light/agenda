@@ -59,11 +59,14 @@ mongoose.connect(app.get('db'));
  * Routes
  */
 
-var contactsAPI = require('./modules/contacts/routes');
-var usersAPI    = require('./modules/users/routes');
+var authRoutes     = require('./modules/auth/routes');
+var contactsRoutes = require('./modules/contacts/routes');
+var usersRoutes    = require('./modules/users/routes');
 
-app.use('/api/contacts', contactsAPI);
-app.use('/api/users', usersAPI);
+
+app.use('/auth', authRoutes);
+app.use('/api/contacts', contactsRoutes);
+app.use('/api/users', usersRoutes);
 
 /**
  * Bootstrap

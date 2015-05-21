@@ -1,0 +1,27 @@
+<h1>Login</h1>
+
+<form ng-submit="vm.login(vm.credentials)">
+  <div layout="row">
+    <md-input-container flex>
+      <label>Email</label>
+      <input type="text" ng-model="vm.credentials.email">
+    </md-input-container>
+  </div>
+
+  <div layout="row">
+    <md-input-container flex>
+      <label>Password</label>
+      <input type="password" ng-model="vm.credentials.password">
+    </md-input-container>
+  </div>
+
+  <div layout="row">
+    <md-button type="submit" class="md-primary md-raised">
+      Login
+    </md-button>
+  </div>
+</form>
+
+<p>
+  Don't have an account? <a href="#/signup">Sign Up now</a>!
+</p>
