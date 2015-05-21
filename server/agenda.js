@@ -56,6 +56,12 @@ if(env === 'development') {
 mongoose.connect(app.get('db'));
 
 /**
+ * Models
+ */
+
+var User = require('./modules/users/model');
+
+/**
  * Routes
  */
 
@@ -63,10 +69,37 @@ var authRoutes     = require('./modules/auth/routes');
 var contactsRoutes = require('./modules/contacts/routes');
 var usersRoutes    = require('./modules/users/routes');
 
-
 app.use('/auth', authRoutes);
-app.use('/api/contacts', contactsRoutes);
-app.use('/api/users', usersRoutes);
+app.use('/api/contacts', ensureAuthenticated, contactsRoutes);
+app.use('/api/users', ensureAuthenticated, usersRoutes);
+
+/**
+ * Protect the API
+ */
+
+function ensureAuthenticated(req, res, next) {
+  if(!(req.headers && req.headers.authorization)) {
+    return res.status(400).send({message: 'You did not provide a JWT in the Authorization header.'});
+  }
+
+  var header = req.headers.authorization.split(' ');
+  var token = header[1];
+  var payload = jwt.decode(token, config.tokenSecret);
+  var now = moment().unix();
+
+  if(now > payload.exp) {
+    return res.status(401).send({message: 'JWT has expired.'});
+  }
+
+  User.findById(payload.sub, function(err, user) {
+    if(!user) {
+      return res.status(400).send({message: 'User no longer exists.'})
+    }
+
+    req.user = user;
+    next();
+  });
+}
 
 /**
  * Bootstrap

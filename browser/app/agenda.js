@@ -15,7 +15,8 @@
       'agenda.modules.auth',
       'agenda.modules.contacts'
     ])
-    .config(config);
+    .config(config)
+    .run(run);
 
   /**
    * Define the default config of the app
@@ -34,6 +35,19 @@
     $authProvider.google({
       clientId: '1017806857153-fagnt85b1hp1vo51co4qpbj6qte006b8.apps.googleusercontent.com',
     });
+  }
+
+  /**
+   * Run before anything else
+   *
+   * @ngInject
+   * @api public
+   */
+
+  function run($rootScope, $window, $auth) {
+    if($auth.isAuthenticated() && $window.localStorage.currentUser) {
+      $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+    }
   }
 
   /**

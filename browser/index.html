@@ -32,13 +32,19 @@
         Create
       </md-button>
 
-      <md-button class="md-toolbar-item" ng-href="#/signup">
-        Sign Up
-      </md-button>
+      <div ng-if="!currentUser">
+        <md-button class="md-toolbar-item" ng-href="#/signup">
+          Sign Up
+        </md-button>
 
-      <md-button class="md-toolbar-item" ng-href="#/login">
-        Login
-      </md-button>
+        <md-button class="md-toolbar-item" ng-href="#/login">
+          Login
+        </md-button>
+      </div>
+
+      <div ng-if="currentUser">
+        Hello, {{currentUser.email}}
+      </div>
     </div>
   </md-toolbar>
 
