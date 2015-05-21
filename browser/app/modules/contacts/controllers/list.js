@@ -16,33 +16,20 @@
    * @api public
    */
 
-  function ContactsListController($log, contactsService) {
+  function ContactsListController($log, contactsService, contactsPrepService) {
     var vm = this;
-    var Contact = contactsService;
 
-    vm.contacts = [];
+    vm.contacts = contactsPrepService.data;
 
-    vm.init = init;
     vm.remove = remove;
 
-    vm.init();
-
-    function init() {
-      Contact
-        .retrieve()
-        .then(function(res) {
-          vm.contacts = res.data;
-        });
-    }
-
     function remove(id) {
-      Contact
-        .remove(id)
+      contactsService.remove(id)
         .then(function(res) {
-          $log.info(res);
+          $log.info('Contact removed successfully');
         })
         .catch(function(res) {
-          $log.info(res);
+          $log.error('Error removing contact');
         });
     }
   }

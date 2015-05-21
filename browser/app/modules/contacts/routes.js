@@ -25,7 +25,10 @@
       url: '/contacts/',
       templateUrl: 'views/contacts/list.html',
       controller: 'ContactsListController',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
+      resolve: {
+        contactsPrepService: contactsPrepService
+      }
     });
 
     $stateProvider.state('contacts-create', {
@@ -39,14 +42,20 @@
       url: '/contacts/:id/',
       templateUrl: 'views/contacts/show.html',
       controller: 'ContactsShowController',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
+      resolve: {
+        contactPrepService: contactPrepService
+      }
     });
 
     $stateProvider.state('contacts-edit', {
       url: '/contacts/:id/edit/',
       templateUrl: 'views/contacts/edit.html',
       controller: 'ContactsEditController',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
+      resolve: {
+        contactPrepService: contactPrepService
+      }
     });
   }
 
@@ -55,12 +64,31 @@
    *
    * @api private
    */
+
   function normalizeRoute($injector, $location) {
     var path = $location.path();
 
     if(path.substr(-1) !== '/') {
       return path + '/';
     }
+  }
+
+  /**
+   * @api private
+   */
+
+  function contactPrepService($q, $stateParams, contactsService) {
+    var id = $stateParams.id;
+
+    return contactsService.findOne(id);
+  }
+
+  /**
+   * @api private
+   */
+
+  function contactsPrepService($q, $stateParams, contactsService) {
+    return contactsService.retrieve();
   }
 
 })(angular);

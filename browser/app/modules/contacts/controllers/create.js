@@ -16,7 +16,7 @@
    * @api public
    */
 
-  function ContactsCreateController($scope, $log, contactsService) {
+  function ContactsCreateController($log, contactsService) {
     var vm = this;
     var Contact = contactsService;
 
@@ -34,10 +34,10 @@
       Contact
         .create(vm.newContact)
         .then(function(res) {
-          $log.info(res);
+          $log.info('Contact created successfully');
         })
         .catch(function(res) {
-          $log.info(res);
+          $log.error('Error creating contact');
         });
     }
   }

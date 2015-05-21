@@ -16,41 +16,22 @@
    * @api public
    */
 
-  function ContactsEditController($scope, $stateParams, $log, contactsService) {
+  function ContactsEditController(contactsService, contactPrepService) {
     var vm = this;
-    var Contact = contactsService;
 
-    vm.contact = {};
+    vm.contact = contactPrepService.data;
 
-    vm.init = init;
     vm.update = update;
-
-    vm.init();
-
-    function init() {
-      var id = $stateParams.id;
-
-      Contact
-        .findOne(id)
-        .then(function(res) {
-          $log.info(res);
-          vm.contact = res.data;
-        })
-        .catch(function(res) {
-          $log.info(res);
-        });
-    }
 
     function update() {
       var id = $stateParams.id;
 
-      Contact
-        .update(id, vm.contact)
+      contactsService.update(id, vm.contact)
         .then(function(res) {
-          $log.info(res);
+          $log.info('Contact updated successfully');
         })
         .catch(function(res) {
-          $log.info(res);
+          $log.error('Error updating contact');
         });
     }
   }

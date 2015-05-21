@@ -36,8 +36,7 @@
     function create(body) {
       var defer = $q.defer();
 
-      $http
-        .post('/api/contacts/', body)
+      $http.post('/api/contacts/', body)
         .success(function(data, status) {
           defer.resolve({data: data, status: status});
         })
@@ -58,8 +57,7 @@
     function retrieve() {
       var defer = $q.defer();
 
-      $http
-        .get('/api/contacts/')
+      $http.get('/api/contacts/')
         .success(function(data, status) {
           defer.resolve({data: data, status: status});
         })
@@ -81,8 +79,7 @@
     function findOne(id) {
       var defer = $q.defer();
 
-      $http
-        .get('/api/contacts/' + id)
+      $http.get('/api/contacts/' + id)
         .success(function(data, status) {
           defer.resolve({data: data, status: status});
         })
@@ -105,8 +102,7 @@
     function update(id, body) {
       var defer = $q.defer();
 
-      $http
-        .put('/api/contacts/' + id, body)
+      $http.put('/api/contacts/' + id, body)
         .success(function(data, status) {
           defer.resolve({data: data, status: status});
         })
@@ -128,8 +124,7 @@
     function remove(id) {
       var defer = $q.defer();
 
-      $http
-        .delete('/api/contacts/' + id)
+      $http.delete('/api/contacts/' + id)
         .success(function(data, status) {
           defer.resolve({data: data, status: status});
         })
