@@ -51,7 +51,7 @@ function retrieve(req, res, callback) {
 }
 
 /**
- * Find one contact by _id
+ * Find a contact by _id
  *
  * @param {Object} req
  * @param {Object} res

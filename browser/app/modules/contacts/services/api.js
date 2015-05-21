@@ -25,6 +25,14 @@
     this.update   = update;
     this.remove   = remove;
 
+    /**
+     * Create a new contact
+     *
+     * @param {Object} body
+     * @return {Object}
+     * @api public
+     */
+
     function create(body) {
       var defer = $q.defer();
 
@@ -39,6 +47,13 @@
 
       return defer.promise;
     }
+
+    /**
+     * Retrieve all contacts
+     *
+     * @return {Object}
+     * @api public
+     */
 
     function retrieve() {
       var defer = $q.defer();
@@ -55,6 +70,14 @@
       return defer.promise;
     }
 
+    /**
+     * Find a contact by _id
+     *
+     * @param {Number} id
+     * @return {Object}
+     * @api public
+     */
+
     function findOne(id) {
       var defer = $q.defer();
 
@@ -69,6 +92,15 @@
 
       return defer.promise;
     }
+
+    /**
+     * Update a contact
+     *
+     * @param {Number} id
+     * @param {Object} body
+     * @return {Object}
+     * @api public
+     */
 
     function update(id, body) {
       var defer = $q.defer();
@@ -85,6 +117,14 @@
       return defer.promise;
     }
 
+    /**
+     * Remove a contact
+     *
+     * @param {Number} id
+     * @return {Object}
+     * @api public
+     */
+
     function remove(id) {
       var defer = $q.defer();
 
@@ -100,5 +140,4 @@
       return defer.promise;
     }
   }
-
 })(angular);
