@@ -16,8 +16,26 @@
    * @api public
    */
 
-  function ContactsShowController($scope) {
+  function ContactsShowController($log, $stateParams, contactsService) {
+    var vm = this;
+    var Contact = contactsService;
 
+    vm.contact = {};
+
+    vm.init = init;
+
+    vm.init();
+
+    function init() {
+      var id = $stateParams.id;
+
+      Contact
+        .findOne(id)
+        .then(function(res) {
+          vm.contact = res.data;
+        });
+    }
   }
+
 
 })(angular);

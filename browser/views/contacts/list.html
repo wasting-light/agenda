@@ -1,3 +1,14 @@
 <h1>Hello, users!</h1>
 
-{{vm.users}}
+<table border="1">
+  <tr ng-repeat="contact in vm.contacts">
+    <td>
+      <a href="#/contacts/{{contact._id}}">
+        {{contact.name}}
+      </a>
+    </td>
+    <td ng-click="vm.remove(contact._id)">
+      <md-icon md-svg-icon="remove"></md-icon>
+    </td>
+  </tr>
+</table>

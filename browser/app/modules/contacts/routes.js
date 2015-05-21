@@ -41,6 +41,13 @@
       controller: 'ContactsShowController',
       controllerAs: 'vm'
     });
+
+    $stateProvider.state('contacts-edit', {
+      url: '/contacts/:id/edit/',
+      templateUrl: 'views/contacts/edit.html',
+      controller: 'ContactsEditController',
+      controllerAs: 'vm'
+    });
   }
 
   /**

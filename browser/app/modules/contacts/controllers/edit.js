@@ -9,35 +9,43 @@
 
   angular
     .module('agenda.modules.contacts')
-    .controller('ContactsListController', ContactsListController);
+    .controller('ContactsEditController', ContactsEditController);
 
   /**
    * @ngInject
    * @api public
    */
 
-  function ContactsListController($log, contactsService) {
+  function ContactsEditController($scope, $stateParams, $log, contactsService) {
     var vm = this;
     var Contact = contactsService;
 
-    vm.contacts = [];
+    vm.contact = {};
 
     vm.init = init;
-    vm.remove = remove;
+    vm.update = update;
 
     vm.init();
 
     function init() {
+      var id = $stateParams.id;
+
       Contact
-        .retrieve()
+        .findOne(id)
         .then(function(res) {
-          vm.contacts = res.data;
+          $log.info(res);
+          vm.contact = res.data;
+        })
+        .catch(function(res) {
+          $log.info(res);
         });
     }
 
-    function remove(id) {
+    function update() {
+      var id = $stateParams.id;
+
       Contact
-        .remove(id)
+        .update(id, vm.contact)
         .then(function(res) {
           $log.info(res);
         })
@@ -46,6 +54,5 @@
         });
     }
   }
-
 
 })(angular);
