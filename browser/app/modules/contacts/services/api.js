@@ -37,12 +37,8 @@
       var defer = $q.defer();
 
       $http.post('/api/contacts/', body)
-        .success(function(data, status) {
-          defer.resolve({data: data, status: status});
-        })
-        .error(function(data, status) {
-          defer.reject({data: data, status: status});
-        });
+        .success(handleSuccess.bind(null, defer))
+        .error(handleError.bind(null, defer));
 
       return defer.promise;
     }
@@ -58,12 +54,8 @@
       var defer = $q.defer();
 
       $http.get('/api/contacts/')
-        .success(function(data, status) {
-          defer.resolve({data: data, status: status});
-        })
-        .error(function(data, status) {
-          defer.reject({data: data, status: status});
-        });
+        .success(handleSuccess.bind(null, defer))
+        .error(handleError.bind(null, defer));
 
       return defer.promise;
     }
@@ -80,12 +72,8 @@
       var defer = $q.defer();
 
       $http.get('/api/contacts/' + id)
-        .success(function(data, status) {
-          defer.resolve({data: data, status: status});
-        })
-        .error(function(data, status) {
-          defer.reject({data: data, status: status});
-        });
+        .success(handleSuccess.bind(null, defer))
+        .error(handleError.bind(null, defer));
 
       return defer.promise;
     }
@@ -103,12 +91,8 @@
       var defer = $q.defer();
 
       $http.put('/api/contacts/' + id, body)
-        .success(function(data, status) {
-          defer.resolve({data: data, status: status});
-        })
-        .error(function(data, status) {
-          defer.reject({data: data, status: status});
-        });
+        .success(handleSuccess.bind(null, defer))
+        .error(handleError.bind(null, defer));
 
       return defer.promise;
     }
@@ -125,14 +109,30 @@
       var defer = $q.defer();
 
       $http.delete('/api/contacts/' + id)
-        .success(function(data, status) {
-          defer.resolve({data: data, status: status});
-        })
-        .error(function(data, status) {
-          defer.reject({data: data, status: status});
-        });
+        .success(handleSuccess.bind(null, defer))
+        .error(handleError.bind(null, defer));
 
       return defer.promise;
     }
+  }
+
+  /**
+   * Handle successful requests
+   *
+   * @param {Object} defer
+   */
+
+  function handleSuccess(defer, data, status) {
+    defer.resolve({ data: data, status: status });
+  }
+
+  /**
+   * Handle unsuccessful requests
+   *
+   * @param {Object} defer
+   */
+
+  function handleError(defer, data, status) {
+    defer.reject({ banana: data, status: status });
   }
 })(angular);

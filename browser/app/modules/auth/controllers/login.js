@@ -26,6 +26,7 @@
     };
 
     vm.login = login;
+    vm.googleLogin = googleLogin
 
     /**
      * Log the user in
@@ -45,6 +46,27 @@
         .catch(function(response) {
           vm.isLoading = false;
           console.log(response);
+        });
+    }
+
+    /**
+     * Authenticat the user by Google
+     *
+     * @api public
+     */
+
+    function googleLogin() {
+      vm.isLoading = true;
+
+      $auth.authenticate('google')
+        .then(function(response) {
+          vm.isLoading = false;
+          $window.localStorage.currentUser = JSON.stringify(response.data.user);
+          $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+        })
+        .catch(function(response) {
+          vm.isLoading = false;
+          console.info('error', response);
         });
     }
   }
