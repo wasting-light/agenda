@@ -2,7 +2,7 @@
   'use strict';
 
   /**
-   * Set the auth model
+   * Set the auth module
    *
    * @api public
    */

@@ -15,7 +15,7 @@
 
 <body>
 
-  <md-toolbar>
+  <md-toolbar ng-controller="ToolbarController as toolbar">
     <div class="md-toolbar-tools">
       <h2>
         <md-icon md-svg-icon="menu"></md-icon>
@@ -33,17 +33,19 @@
       </md-button>
 
       <div ng-if="!currentUser">
-        <md-button class="md-toolbar-item" ng-href="#/signup">
+        <md-button class="md-toolbar-item md-raised md-accent" ng-href="#/signup">
           Sign Up
         </md-button>
 
-        <md-button class="md-toolbar-item" ng-href="#/login">
+        <md-button class="md-toolbar-item md-raised" ng-href="#/login">
           Login
         </md-button>
       </div>
 
       <div ng-if="currentUser">
-        Hello, {{currentUser.email}}
+        <md-button class="md-toolbar-item md-raised" ng-click="toolbar.logout()">
+          Logout
+        </md-button>
       </div>
     </div>
   </md-toolbar>

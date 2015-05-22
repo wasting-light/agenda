@@ -2,13 +2,13 @@
   'use strict';
 
   /**
-   * Set the contacts module
+   * Set the toolbar module
    *
    * @api public
    */
 
   angular
-    .module('agenda.modules.contacts', [
+    .module('agenda.layout.toolbar', [
       'ui.router',
       'ngMaterial',
       'satellizer'

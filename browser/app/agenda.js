@@ -13,7 +13,8 @@
       'ui.router',
       'satellizer',
       'agenda.modules.auth',
-      'agenda.modules.contacts'
+      'agenda.modules.contacts',
+      'agenda.layout.toolbar',
     ])
     .config(config)
     .run(run);
