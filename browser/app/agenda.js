@@ -14,6 +14,7 @@
       'satellizer',
       'agenda.modules.auth',
       'agenda.modules.contacts',
+      'agenda.modules.users',
       'agenda.layout.toolbar',
     ])
     .config(config)

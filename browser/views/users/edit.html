@@ -1,0 +1,45 @@
+<div layout="row" layout-align="center center" ng-if="vm.isLoading">
+  <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<div ng-if="vm.user">
+  <h1>Editing: {{vm.user.name}}</h1>
+
+  <form ng-submit="vm.update(vm.user)">
+    <div layout="row">
+      <md-input-container flex>
+        <label>Name</label>
+        <input type="text" ng-model="vm.user.name">
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>Phone</label>
+        <input type="text" ng-model="vm.user.phone">
+      </md-input-container>
+    </div>
+
+    <div layout="row">
+      <md-input-container flex>
+        <label>Email</label>
+        <input type="text" ng-model="vm.user.email">
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>Address</label>
+        <input type="text" ng-model="vm.user.address">
+      </md-input-container>
+    </div>
+
+    <div layout="row">
+      <md-switch ng-model="vm.user.isFavorite" flex>
+        Add to Favorites?
+      </md-switch>
+    </div>
+
+    <div layout="row">
+      <md-button type="submit" class="md-primary md-raised">
+        Create
+      </md-button>
+    </div>
+  </form>
+</div>

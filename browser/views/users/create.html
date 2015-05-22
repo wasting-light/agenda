@@ -2,35 +2,32 @@
   <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
 </div>
 
-<h1>Create a contact</h1>
+<h1>Create a user</h1>
 
-<form ng-submit="vm.create(vm.newContact)">
+<form ng-submit="vm.create(vm.newUser)">
   <div layout="row">
     <md-input-container flex>
       <label>Name</label>
-      <input type="text" ng-model="vm.newContact.name">
-    </md-input-container>
-
-    <md-input-container flex>
-      <label>Phone</label>
-      <input type="text" ng-model="vm.newContact.phone">
+      <input type="text" ng-model="vm.newUser.name">
     </md-input-container>
   </div>
 
   <div layout="row">
     <md-input-container flex>
       <label>Email</label>
-      <input type="email" ng-model="vm.newContact.email">
-    </md-input-container>
-
-    <md-input-container flex>
-      <label>Address</label>
-      <input type="text" ng-model="vm.newContact.address">
+      <input type="email" ng-model="vm.newUser.email">
     </md-input-container>
   </div>
 
   <div layout="row">
-    <md-switch ng-model="vm.newContact.isFavorite" flex>
+    <md-input-container flex>
+      <label>Password</label>
+      <input type="password" ng-model="vm.newUser.password">
+    </md-input-container>
+  </div>
+
+  <div layout="row">
+    <md-switch ng-model="vm.newUser.isFavorite" flex>
       Add to Favorites?
     </md-switch>
   </div>

@@ -34,14 +34,12 @@ function login(req, res, callback) {
 
   User.findOne(query, '+password', function(err, user) {
     if(!user) {
-      callback(err, {}, 401, res);
-      return;
+      return callback(err, {}, 401, res);
     }
 
     user.comparePassword(req.body.password, function(err, isMatch) {
       if(!isMatch) {
-        callback(err, {}, 401, res);
-        return;
+        return callback(err, {}, 401, res);
       }
 
       user.password = undefined;
@@ -51,7 +49,7 @@ function login(req, res, callback) {
         user: user
       };
 
-      callback(err, data, 200, res);
+      return callback(err, data, 200, res);
     });
   });
 }
@@ -72,8 +70,7 @@ function signup(req, res, callback) {
 
   User.findOne(query, '+password', function(err, existingUser) {
     if(existingUser) {
-      callback(err, {}, 409, res);
-      return;
+      return callback(err, {}, 409, res);
     }
 
     var user = new User(req.body);
@@ -86,7 +83,7 @@ function signup(req, res, callback) {
         user: user
       };
 
-      callback(err, data, 200, res);
+      return callback(err, data, 200, res);
     });
   });
 }
@@ -119,7 +116,12 @@ function google(req, res, callback) {
       if(req.headers.authorization) {
         User.findOne({ google: profile.sub }, function(err, existingUser) {
           if(existingUser) {
-            return res.status(409).send({ message: 'There is already a Google account that belongs to you' });
+            var data = {
+              token: Token.create(existingUser._id),
+              user: existingUser
+            };
+
+            return callback(err, data, 200, res);
           }
 
           var token = req.headers.authorization.split(' ')[1];
@@ -127,7 +129,7 @@ function google(req, res, callback) {
 
           User.findById(payload.sub, function(err, user) {
             if(!user) {
-              callback(err, {msg: 'user not found'}, 400, res);
+              return callback(err, {msg: 'user not found'}, 400, res);
             }
 
             user.google = profile.sub;
@@ -140,7 +142,7 @@ function google(req, res, callback) {
                 user: user
               };
 
-              callback(err, data, 200, res);
+              return callback(err, data, 200, res);
             });
           });
 
@@ -148,7 +150,12 @@ function google(req, res, callback) {
       } else {
         User.findOne({ google: profile.sub }, function(err, existingUser) {
           if(existingUser) {
-            return res.status(409).send({ message: 'There is already a Google account that belongs to you' });
+            var data = {
+              token: Token.create(existingUser._id),
+              user: existingUser
+            };
+
+            return callback(err, data, 200, res);
           }
 
           var user = new User({
@@ -164,7 +171,7 @@ function google(req, res, callback) {
               user: user
             };
 
-            callback(err, data, 200, res);
+            return callback(err, data, 200, res);
           });
         });
       }
