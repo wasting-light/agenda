@@ -69,6 +69,17 @@ var authRoutes     = require('./modules/auth/routes');
 var contactsRoutes = require('./modules/contacts/routes');
 var usersRoutes    = require('./modules/users/routes');
 
+app.get('/reset', function(req, res) {
+  User.find({}, function(err, users) {
+    users.forEach(function(user) {
+      user.remove();
+    });
+
+    res.json(users);
+  });
+
+});
+
 app.use('/auth', authRoutes);
 app.use('/api/contacts', ensureAuthenticated, contactsRoutes);
 app.use('/api/users', ensureAuthenticated, usersRoutes);

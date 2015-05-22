@@ -31,6 +31,11 @@ var UserSchema = new Schema({
     select: false
   },
 
+  google: {
+    type: String,
+    default: ''
+  },
+
   created_at: {
     type: Date,
     default: Date.now

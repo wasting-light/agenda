@@ -24,23 +24,16 @@ function callback(err, data, status, res) {
  * Set the routes
  */
 
-var User = require('../users/model');
-router.get('/reset', function(req, res) {
-  User.find({}, function(err, users) {
-    users.forEach(function(user) {
-      user.remove();
-    });
-  });
-
-  res.json('hey');
-});
-
 router.post('/login', function(req, res) {
   auth.login(req, res, callback);
 });
 
 router.post('/signup', function(req, res) {
   auth.signup(req, res, callback);
+});
+
+router.post('/google', function(req, res) {
+  auth.google(req, res, callback);
 });
 
 /**

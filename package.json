@@ -30,7 +30,8 @@
     "method-override": "^2.3.3",
     "moment": "^2.10.3",
     "mongoose": "^4.0.3",
-    "morgan": "^1.5.3"
+    "morgan": "^1.5.3",
+    "request": "^2.55.0"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
