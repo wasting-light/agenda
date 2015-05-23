@@ -116,20 +116,20 @@ function google(req, res, callback) {
       if(req.headers.authorization) {
         User.findOne({ google: profile.sub }, function(err, existingUser) {
           if(existingUser) {
-            var data = {
+            return res.json({
               token: Token.create(existingUser._id),
               user: existingUser
-            };
-
-            return callback(err, data, 200, res);
+            });
           }
 
-          var token = req.headers.authorization.split(' ')[1];
-          var payload = jwt.decode(token, config.tokenSecret);
+          var headerToken = req.headers.authorization.split(' ')[1];
+          var payload = Token.decode(headerToken);
 
           User.findById(payload.sub, function(err, user) {
             if(!user) {
-              return callback(err, {msg: 'user not found'}, 400, res);
+              return res.status(400).send({
+                message: 'User not found'
+              });
             }
 
             user.google = profile.sub;
@@ -137,12 +137,10 @@ function google(req, res, callback) {
             user.name = user.name || profile.name;
 
             user.save(function() {
-              var data = {
+              return res.json({
                 token: Token.create(user._id),
                 user: user
-              };
-
-              return callback(err, data, 200, res);
+              });
             });
           });
 
@@ -150,12 +148,10 @@ function google(req, res, callback) {
       } else {
         User.findOne({ google: profile.sub }, function(err, existingUser) {
           if(existingUser) {
-            var data = {
+            return res.json({
               token: Token.create(existingUser._id),
               user: existingUser
-            };
-
-            return callback(err, data, 200, res);
+            });
           }
 
           var user = new User({
@@ -166,12 +162,10 @@ function google(req, res, callback) {
           });
 
           user.save(function(err) {
-            var data = {
+            return res.json({
               token: Token.create(user._id),
               user: user
-            };
-
-            return callback(err, data, 200, res);
+            });
           });
         });
       }

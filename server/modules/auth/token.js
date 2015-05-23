@@ -11,7 +11,8 @@ var moment = require('moment');
  */
 
 module.exports = {
-  create: create
+  create: create,
+  decode: decode
 }
 
 /**
@@ -19,6 +20,7 @@ module.exports = {
  *
  * @param {Object} user
  * @return {String}
+ * @api public
  */
 
 function create(sub) {
@@ -29,4 +31,15 @@ function create(sub) {
   };
 
   return jwt.encode(payload, config.tokenSecret);
+}
+
+/**
+ * Decode a token
+ *
+ * @param {String} token
+ * @return {Object}
+ * @api public
+ */
+function decode(token) {
+  return jwt.decode(token, config.tokenSecret);
 }
