@@ -45,7 +45,7 @@ function login(req, res, callback) {
       user.password = undefined;
 
       var data = {
-        token: Token.create(user._id),
+        token: Token.create({id: user._id, role: user.role}),
         user: user
       };
 
@@ -79,7 +79,7 @@ function signup(req, res, callback) {
       user.password = undefined;
 
       var data = {
-        token: Token.create(user._id),
+        token: Token.create({id: user._id, role: user.role}),
         user: user
       };
 
@@ -125,7 +125,7 @@ function google(req, res, callback) {
           var headerToken = req.headers.authorization.split(' ')[1];
           var payload = Token.decode(headerToken);
 
-          User.findById(payload.sub, function(err, user) {
+          User.findById(payload.sub.id, function(err, user) {
             if(!user) {
               return res.status(400).send({
                 message: 'User not found'
@@ -138,7 +138,7 @@ function google(req, res, callback) {
 
             user.save(function() {
               return res.json({
-                token: Token.create(user._id),
+                token: Token.create({id: user._id, role: user.role}),
                 user: user
               });
             });
@@ -163,7 +163,7 @@ function google(req, res, callback) {
 
           user.save(function(err) {
             return res.json({
-              token: Token.create(user._id),
+              token: Token.create({id: user._id, role: user.role}),
               user: user
             });
           });

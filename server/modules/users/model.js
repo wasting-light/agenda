@@ -31,6 +31,11 @@ var UserSchema = new Schema({
     select: false
   },
 
+  role: {
+    type: String,
+    default: 'admin'
+  },
+
   google: {
     type: String,
     default: ''
