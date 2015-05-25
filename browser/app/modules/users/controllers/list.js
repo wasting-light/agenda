@@ -16,7 +16,7 @@
    * @api public
    */
 
-  function UsersListController(usersService) {
+  function UsersListController($window, $log, tokenService, usersService) {
     var vm = this;
     vm.isLoading = false;
 
@@ -24,6 +24,14 @@
     vm.remove = remove;
 
     vm.activate();
+
+    vm.test = function() {
+      var token = $window.localStorage.satellizer_token;
+      var decode = tokenService.decodeToken(token).sub;
+      $log.info(decode);
+    }
+
+    vm.test();
 
     /**
      * Activate the controller

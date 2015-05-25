@@ -28,7 +28,7 @@
     vm.signup = signup;
 
     /**
-     * Log the user in
+     * Sign the user up
      *
      * @api public
      */
@@ -45,6 +45,27 @@
         .catch(function(response) {
           vm.isLoading = false;
           console.log(response);
+        });
+    }
+
+    /**
+     * Sign up the user by Google
+     *
+     * @api public
+     */
+
+    function googleSignup() {
+      vm.isLoading = true;
+
+      $auth.link('google')
+        .then(function(response) {
+          vm.isLoading = false;
+          $window.localStorage.currentUser = JSON.stringify(response.data.user);
+          $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+        })
+        .catch(function(response) {
+          vm.isLoading = false;
+          console.info('error', response);
         });
     }
   }

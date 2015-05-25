@@ -18,42 +18,20 @@
    * @api public
    */
 
-  function authService($http, $q) {
-    this.getCurrentUser = getCurrentUser;
+  function authService($window, tokenService) {
     this.isAuthorized = isAuthorized;
 
-    function getCurrentUser() {
-      var defer = $q.defer();
-
-      $http.get('/me')
-        .success(function(data, status) {
-          defer.resolve({ data: data, status: status });
-        })
-        .error(function(data, status) {
-          defer.reject({ data: data, status: status });
-        });
-
-      return defer.promise;
-    }
-
     function isAuthorized(authorizedRoles) {
+      var token = $window.localStorage.satellizer_token;
+      var decoded = tokenService.decodeToken(token);
+      var role = decoded.sub.role;
 
-      var defer = $q.defer();
+      if(authorizedRoles.indexOf(role) === -1) {
+        return false;
+      }
 
-      this.getCurrentUser()
-        .then(function(response) {
-          var userRole = response.data;
 
-          if(userRole === 'admin') {
-            console.log('hey');
-            defer.resolve();
-            return true;
-          }
-
-          console.log('false');
-          defer.reject();
-          return false;
-        });
+      return true;
     }
   }
 

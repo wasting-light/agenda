@@ -18,7 +18,7 @@
    * @api public
    */
 
-  function tokenService($http, $q) {
+  function tokenService() {
     this.urlBase64Decode        = urlBase64Decode;
     this.decodeToken            = decodeToken;
     this.isTokenExpired         = isTokenExpired;
@@ -113,7 +113,5 @@
       return !(d.valueOf() > (new Date().valueOf() + (offsetSeconds * 1000)));
     }
   }
-
- });
 
 })(angular);

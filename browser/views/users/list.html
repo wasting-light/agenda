@@ -5,6 +5,12 @@
 <div ng-if="vm.users">
   <h1>All users</h1>
 
+  <md-button class="md-accent md-raised" ng-click="vm.test()">
+    <md-icon md-svg-icon="autorenew"></md-icon> Verify
+  </md-button>
+
+  {{vm.message}}
+
   <div layout="row" layout-align="center center" style="margin: 2rem" ng-repeat="user in vm.users">
     <img class="avatar" ng-src="{{user.avatar}}">
 

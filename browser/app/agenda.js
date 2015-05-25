@@ -64,13 +64,9 @@
   function ensureAuthentication($rootScope, $location, $window, $q, $auth) {
     $rootScope.$on('$stateChangeStart', function(event, next) {
       if(next.authenticated) {
-        // var defer = $q.defer();
-
         if(!$auth.isAuthenticated()) {
           event.preventDefault();
           $location.path('/login');
-        } else {
-          // defer.resolve();
         }
       }
     });
@@ -84,6 +80,17 @@
    */
 
   function ensureAuthorization($rootScope, $location, authService) {
+    $rootScope.$on('$stateChangeStart', function(event, next) {
+
+      if(next.authorizedRoles) {
+        var authorizedRoles = next.authorizedRoles;
+        
+        if(!authService.isAuthorized(authorizedRoles)) {
+          event.preventDefault();
+          console.warn('You\'re not authorized here');
+        }
+      }
+    });
   }
 
 

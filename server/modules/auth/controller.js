@@ -117,7 +117,7 @@ function google(req, res, callback) {
         User.findOne({ google: profile.sub }, function(err, existingUser) {
           if(existingUser) {
             return res.json({
-              token: Token.create(existingUser._id),
+              token: Token.create({id: existingUser._id, role: existingUser.role}),
               user: existingUser
             });
           }
@@ -149,7 +149,7 @@ function google(req, res, callback) {
         User.findOne({ google: profile.sub }, function(err, existingUser) {
           if(existingUser) {
             return res.json({
-              token: Token.create(existingUser._id),
+              token: Token.create({id: existingUser._id, role: existingUser.role}),
               user: existingUser
             });
           }

@@ -108,7 +108,7 @@ function ensureAuthenticated(req, res, next) {
     return res.status(401).send({message: 'JWT has expired.'});
   }
 
-  User.findById(payload.sub, function(err, user) {
+  User.findById(payload.sub.id, function(err, user) {
     if(!user) {
       return res.status(400).send({message: 'User no longer exists.'})
     }

@@ -50,7 +50,7 @@
     }
 
     /**
-     * Authenticat the user by Google
+     * Authenticate the user by Google
      *
      * @api public
      */
@@ -58,7 +58,7 @@
     function googleLogin() {
       vm.isLoading = true;
 
-      $auth.authenticate('google')
+      $auth.link('google')
         .then(function(response) {
           vm.isLoading = false;
           $window.localStorage.currentUser = JSON.stringify(response.data.user);

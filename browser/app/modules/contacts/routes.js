@@ -24,8 +24,7 @@
       templateUrl: 'views/contacts/list.html',
       controller: 'ContactsListController',
       controllerAs: 'vm',
-      authenticated: true,
-      authorizedRoles: ['admin']
+      authenticated: true
     });
 
     $stateProvider.state('contacts-create', {
@@ -34,7 +33,7 @@
       controller: 'ContactsCreateController',
       controllerAs: 'vm',
       authenticated: true,
-      authorizedRoles: ['admin']
+      authorizedRoles: ['editor', 'admin']
     });
 
     $stateProvider.state('contacts-show', {
@@ -43,7 +42,6 @@
       controller: 'ContactsShowController',
       controllerAs: 'vm',
       authenticated: true,
-      authorizedRoles: ['admin']
     });
 
     $stateProvider.state('contacts-edit', {
