@@ -24,9 +24,8 @@
       templateUrl: 'views/contacts/list.html',
       controller: 'ContactsListController',
       controllerAs: 'vm',
-      resolve: {
-        authenticated: authenticationResolve
-      }
+      authenticated: true,
+      authorizedRoles: ['admin']
     });
 
     $stateProvider.state('contacts-create', {
@@ -34,9 +33,8 @@
       templateUrl: 'views/contacts/create.html',
       controller: 'ContactsCreateController',
       controllerAs: 'vm',
-      resolve: {
-        authenticated: authenticationResolve
-      }
+      authenticated: true,
+      authorizedRoles: ['admin']
     });
 
     $stateProvider.state('contacts-show', {
@@ -44,9 +42,8 @@
       templateUrl: 'views/contacts/show.html',
       controller: 'ContactsShowController',
       controllerAs: 'vm',
-      resolve: {
-        authenticated: authenticationResolve
-      }
+      authenticated: true,
+      authorizedRoles: ['admin']
     });
 
     $stateProvider.state('contacts-edit', {
@@ -54,29 +51,9 @@
       templateUrl: 'views/contacts/edit.html',
       controller: 'ContactsEditController',
       controllerAs: 'vm',
-      resolve: {
-        authenticated: authenticationResolve
-      }
+      authenticated: true,
+      authorizedRoles: ['admin']
     });
-  }
-
-  /**
-   * Handle authenticated and unauthenticated users
-   *
-   * @ngInject
-   * @api private
-   */
-
-  function authenticationResolve($q, $location, $auth) {
-    var defer = $q.defer();
-
-    if(!$auth.isAuthenticated()) {
-      $location.path('/login');
-    } else {
-      defer.resolve();
-    }
-
-    return defer.promise;
   }
 
 })(angular);

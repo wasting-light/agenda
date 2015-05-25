@@ -5,7 +5,7 @@
   "main": "server/agenda.js",
   "scripts": {
     "test": "test",
-    "start": "nodemon server/agenda.js"
+    "start": "nodemon server/agenda.js --ignore 'browser/*'"
   },
   "repository": {
     "type": "git",

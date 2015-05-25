@@ -80,6 +80,12 @@ app.get('/reset', function(req, res) {
 
 });
 
+app.get('/me', function(req, res) {
+  setTimeout(function() {
+    res.send('admin');
+  }, 3000);
+});
+
 app.use('/auth', authRoutes);
 app.use('/api/contacts', ensureAuthenticated, contactsRoutes);
 app.use('/api/users', ensureAuthenticated, usersRoutes);
