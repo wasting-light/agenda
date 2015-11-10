@@ -13,7 +13,9 @@
       'ui.router',
       'satellizer',
       'agenda.modules.auth',
-      'agenda.modules.contacts',
+	  'agenda.modules.contacts',
+	  'agenda.modules.eventos',
+      'agenda.modules.usuarios',
       'agenda.modules.users',
       'agenda.layout.toolbar',
     ])
@@ -84,7 +86,7 @@
 
       if(next.authorizedRoles) {
         var authorizedRoles = next.authorizedRoles;
-        
+
         if(!authService.isAuthorized(authorizedRoles)) {
           event.preventDefault();
           console.warn('You\'re not authorized here');

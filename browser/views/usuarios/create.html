@@ -1,0 +1,57 @@
+<div layout="row" layout-align="center center" ng-if="vm.isLoading">
+  <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<h1>Criar um usuario</h1>
+
+<form ng-submit="vm.create(vm.newUsuario)">
+  <div layout="row">
+    <md-input-container flex>
+      <label>Nome</label>
+      <input type="text" ng-model="vm.newUsuario.nome">
+    </md-input-container>
+
+    <md-input-container flex>
+      <label>Sobrenome</label>
+      <input type="text" ng-model="vm.newUsuario.sobrenome">
+    </md-input-container>
+  </div>
+
+  <div layout="row">
+    <md-input-container flex>
+      <label>Data de Nascimento</label>
+      <input type="text" ng-model="vm.newUsuario.data">
+    </md-input-container>
+
+    <md-input-container flex>
+      <label>Email</label>
+      <input type="text" ng-model="vm.newUsuario.email">
+    </md-input-container>
+  </div>
+
+  <div layout="row">
+	<md-input-container flex>
+	  <label>Telefone</label>
+	  <input type="text" ng-model="vm.newUsuario.telefone">
+	</md-input-container>
+
+	<md-input-container flex>
+	  <label>CPF</label>
+	  <input type="text" ng-model="vm.newUsuario.cpf">
+	</md-input-container>
+  </div>
+
+  <div layout="row">
+	  <md-input-container flex>
+		<label>Endereço</label>
+		<input type="text" ng-model="vm.newUsuario.endereco">
+	  </md-input-container>
+  </div>
+
+
+  <div layout="row">
+    <md-button type="submit" class="md-primary md-raised">
+      Criar
+    </md-button>
+  </div>
+</form>

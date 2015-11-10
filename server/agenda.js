@@ -56,17 +56,13 @@ if(env === 'development') {
 mongoose.connect(app.get('db'));
 
 /**
- * Models
- */
-
-var User = require('./modules/users/model');
-
-/**
  * Routes
  */
 
 var authRoutes     = require('./modules/auth/routes');
 var contactsRoutes = require('./modules/contacts/routes');
+var eventosRoutes = require('./modules/eventos/routes');
+var usuariosRoutes = require('./modules/usuarios/routes');
 var usersRoutes    = require('./modules/users/routes');
 
 app.get('/reset', function(req, res) {
@@ -77,7 +73,6 @@ app.get('/reset', function(req, res) {
 
     res.json(users);
   });
-
 });
 
 app.get('/me', function(req, res) {
@@ -87,8 +82,14 @@ app.get('/me', function(req, res) {
 });
 
 app.use('/auth', authRoutes);
-app.use('/api/contacts', ensureAuthenticated, contactsRoutes);
-app.use('/api/users', ensureAuthenticated, usersRoutes);
+app.use('/api/contacts', contactsRoutes);
+app.use('/api/eventos', eventosRoutes);
+app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/users', usersRoutes);
+
+app.all('*', function(req, res) {
+  res.sendFile(app.get('public folder') + '/index.html');
+});
 
 /**
  * Protect the API

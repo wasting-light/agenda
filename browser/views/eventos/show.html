@@ -1,0 +1,13 @@
+<div layout="row" layout-align="center center" ng-if="vm.isLoading">
+  <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<div ng-if="vm.evento">
+  <h1>Show a user!</h1>
+
+  <pre>
+    {{vm.evento}}
+  </pre>
+
+  <a href="#/eventos/{{vm.evento._id}}/edit/">Edit</a>
+</div>

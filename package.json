@@ -4,7 +4,7 @@
   "description": "A Node.js and AngularJs contacts app",
   "main": "server/agenda.js",
   "scripts": {
-    "test": "test",
+    "test": "export PATH=/data/mongodb/bin:$PATH",
     "start": "cd server && nodemon agenda.js"
   },
   "repository": {

@@ -1,0 +1,58 @@
+<div layout="row" layout-align="center center" ng-if="vm.isLoading">
+  <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<div ng-if="vm.usuario">
+  <h1>Editando: {{vm.usuario.name}}</h1>
+
+  <form ng-submit="vm.update(vm.usuario)">
+	  <div layout="row">
+        <md-input-container flex>
+          <label>Nome</label>
+          <input type="text" ng-model="vm.usuario.nome">
+        </md-input-container>
+
+        <md-input-container flex>
+          <label>Sobrenome</label>
+          <input type="text" ng-model="vm.usuario.sobrenome">
+        </md-input-container>
+      </div>
+
+      <div layout="row">
+        <md-input-container flex>
+          <label>Data de Nascimento</label>
+          <input type="text" ng-model="vm.usuario.data">
+        </md-input-container>
+
+        <md-input-container flex>
+          <label>Email</label>
+          <input type="text" ng-model="vm.usuario.email">
+        </md-input-container>
+      </div>
+
+      <div layout="row">
+    	<md-input-container flex>
+    	  <label>Telefone</label>
+    	  <input type="text" ng-model="vm.usuario.telefone">
+    	</md-input-container>
+
+    	<md-input-container flex>
+    	  <label>CPF</label>
+    	  <input type="text" ng-model="vm.usuario.cpf">
+    	</md-input-container>
+      </div>
+
+      <div layout="row">
+    	  <md-input-container flex>
+    		<label>Endereço</label>
+    		<input type="text" ng-model="vm.usuario.endereco">
+    	  </md-input-container>
+      </div>
+
+    <div layout="row">
+      <md-button type="submit" class="md-primary md-raised">
+        Editar
+      </md-button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,31 @@
+<div layout="row" layout-align="center center" ng-if="vm.isLoading">
+  <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<div ng-if="vm.eventos">
+  <h1>Todos os eventos</h1>
+
+  <table border="1" ng-if="vm.eventos.length">
+    <tr ng-repeat="evento in vm.eventos">
+      <td>
+        <a href="#/eventos/{{evento._id}}">
+          {{evento.nome}}
+        </a>
+      </td>
+
+      <td ng-click="vm.remove(evento._id, $index)">
+        <md-icon md-svg-icon="remove"></md-icon>
+      </td>
+    </tr>
+  </table>
+
+  <div ng-if="!vm.eventos.length">
+    <h3>No eventos :(</h3>
+  </div>
+</div>
+
+<hr>
+
+<md-button class="md-primary md-raised" ng-href="#/eventos/create/">
+  Criar um novo evento
+</md-button>

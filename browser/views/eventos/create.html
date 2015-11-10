@@ -1,0 +1,37 @@
+<div layout="row" layout-align="center center" ng-if="vm.isLoading">
+  <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<h1>Criar um evento</h1>
+
+<form ng-submit="vm.create(vm.newEvento)">
+  <div layout="row">
+    <md-input-container flex>
+      <label>Nome</label>
+      <input type="text" ng-model="vm.newEvento.nome">
+    </md-input-container>
+
+    <md-input-container flex>
+      <label>Local</label>
+      <input type="text" ng-model="vm.newEvento.local">
+    </md-input-container>
+  </div>
+
+  <div layout="row">
+    <md-input-container flex>
+      <label>Data</label>
+      <input type="text" ng-model="vm.newEvento.data">
+    </md-input-container>
+
+    <md-input-container flex>
+      <label>Horário</label>
+      <input type="text" ng-model="vm.newEvento.horario">
+    </md-input-container>
+  </div>
+
+  <div layout="row">
+    <md-button type="submit" class="md-primary md-raised">
+      Criar
+    </md-button>
+  </div>
+</form>

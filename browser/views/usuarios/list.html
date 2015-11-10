@@ -1,0 +1,31 @@
+<div layout="row" layout-align="center center" ng-if="vm.isLoading">
+  <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<div ng-if="vm.usuarios">
+  <h1>Todos os usuarios</h1>
+
+  <table border="1" ng-if="vm.usuarios.length">
+    <tr ng-repeat="usuario in vm.usuarios">
+      <td>
+        <a href="#/usuarios/{{usuario._id}}">
+          {{usuario.nome}}
+        </a>
+      </td>
+
+      <td ng-click="vm.remove(usuario._id, $index)">
+        <md-icon md-svg-icon="remove"></md-icon>
+      </td>
+    </tr>
+  </table>
+
+  <div ng-if="!vm.usuarios.length">
+    <h3>Sem usuarios :(</h3>
+  </div>
+</div>
+
+<hr>
+
+<md-button class="md-primary md-raised" ng-href="#/usuarios/create/">
+  Criar um novo usuario
+</md-button>
