@@ -16,11 +16,12 @@
    * @api public
    */
 
-  function EventosShowController($stateParams, eventosService) {
+  function EventosShowController($stateParams, $location, eventosService) {
     var vm = this;
     vm.isLoading = false;
 
-    vm.activate = activate;
+	vm.activate = activate;
+    vm.remove = remove;
 
     vm.activate();
 
@@ -43,6 +44,21 @@
           vm.isLoading = false;
         });
     }
+
+	function remove(id, index) {
+	  vm.isLoading = true;
+
+	  eventosService.remove(id)
+		.then(function(res) {
+		  vm.isLoading = false;
+		})
+		.catch(function(res) {
+		  vm.isLoading = false;
+	  	})
+		.finally(function() {
+			$location.path('/eventos');
+		});
+	}
   }
 
 })(angular);

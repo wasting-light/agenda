@@ -1,13 +1,19 @@
-<div layout="row" layout-align="center center" ng-if="vm.isLoading">
-  <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
-</div>
-
 <div ng-if="vm.evento">
-  <h1>Show a user!</h1>
+  <md-card>
+	<md-card-content>
+	  <h2 class="md-title">{{vm.evento.nome}}</h2>
+	 	<p><strong>Id:</strong> {{ vm.evento._id }}</p>
+		<p><strong>Nome:</strong> {{ vm.evento.nome }}</p>
+		<p><strong>Local:</strong> {{ vm.evento.local }}</p>
+		<p><strong>Horário:</strong> {{ vm.evento.horario }}</p>
+		<p><strong>Data do evento:</strong> {{ vm.evento.data }}</p>
+		<p><strong>Atualizado em:</strong> {{ vm.evento.updated_at | date}}</p>
+		<p><strong>Criado em:</strong> {{ vm.evento.created_at | date}}</p>
+	</md-card-content>
+	<md-card-actions layout="row" layout-align="end center">
+	  <md-button href="#/eventos/{{vm.evento._id}}/edit/" class="md-raised md-primary">Editar</md-button>
+	  <md-button class="md-raised md-warn" ng-click="vm.remove(vm.evento._id)">Excluir</md-button>
+	</md-card-actions>
+	</md-card>
 
-  <pre>
-    {{vm.evento}}
-  </pre>
-
-  <a href="#/eventos/{{vm.evento._id}}/edit/">Edit</a>
 </div>

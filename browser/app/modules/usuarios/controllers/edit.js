@@ -61,7 +61,10 @@
         })
         .catch(function(res) {
           vm.isLoading = false;
-        });
+	  })
+	  .finally(function() {
+		  $location.path('/usuarios');
+	  });
     }
   }
 

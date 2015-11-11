@@ -20,7 +20,8 @@
     var vm = this;
     vm.isLoading = false;
 
-    vm.activate = activate;
+	vm.activate = activate;
+    vm.remove = remove;
 
     vm.activate();
 
@@ -43,6 +44,21 @@
           vm.isLoading = false;
         });
     }
+
+	function remove(id) {
+	  vm.isLoading = true;
+
+	  usuariosService.remove(id, vm.usuario)
+		.then(function(res) {
+		  vm.isLoading = false;
+		})
+		.catch(function(res) {
+		  vm.isLoading = false;
+	  })
+	  .finally(function() {
+		  $location.path('/usuarios');
+	  });
+	}
   }
 
 })(angular);

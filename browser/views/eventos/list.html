@@ -5,26 +5,21 @@
 <div ng-if="vm.eventos">
   <h1>Todos os eventos</h1>
 
-  <table border="1" ng-if="vm.eventos.length">
-    <tr ng-repeat="evento in vm.eventos">
-      <td>
-        <a href="#/eventos/{{evento._id}}">
-          {{evento.nome}}
-        </a>
-      </td>
-
-      <td ng-click="vm.remove(evento._id, $index)">
-        <md-icon md-svg-icon="remove"></md-icon>
-      </td>
-    </tr>
-  </table>
-
   <div ng-if="!vm.eventos.length">
-    <h3>No eventos :(</h3>
+    <h3>Sem eventos :(</h3>
   </div>
-</div>
 
-<hr>
+  <md-list ng-if="vm.eventos.length">
+      <md-list-item class="md-3-line" ng-repeat="evento in vm.eventos">
+        <a href="#/eventos/{{evento._id}}" class="md-list-item-text" layout="column" style="text-decoration: none;">
+          <h3>{{ evento.nome }}</h3>
+          <h4>{{ evento.data }}</h4>
+          <p>{{ evento.local }}</p>
+	  	</a>
+      </md-list-item>
+      <md-divider ></md-divider>
+  </md-list>
+</div>
 
 <md-button class="md-primary md-raised" ng-href="#/eventos/create/">
   Criar um novo evento

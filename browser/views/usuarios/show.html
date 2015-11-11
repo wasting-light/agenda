@@ -3,11 +3,24 @@
 </div>
 
 <div ng-if="vm.usuario">
-  <h1>Nome: {{vm.usuario.nome}}</h1>
+  <md-card>
+	<md-card-content>
+	  <h2 class="md-title">{{vm.usuario.nome}}</h2>
+	 	<p><strong>Id:</strong> {{ vm.usuario._id }}</p>
+		<p><strong>Nome:</strong> {{ vm.usuario.nome }}</p>
+		<p><strong>Sobrenome:</strong> {{ vm.usuario.sobrenome }}</p>
+		<p><strong>Endereço:</strong> {{ vm.usuario.endereco }}</p>
+		<p><strong>Cpf:</strong> {{ vm.usuario.cpf }}</p>
+		<p><strong>Telefone:</strong> {{ vm.usuario.telefone }}</p>
+		<p><strong>Email:</strong> {{ vm.usuario.email }}</p>
+		<p><strong>Data de Nascimento:</strong> {{ vm.usuario.data }}</p>
+		<p><strong>Atualizado em:</strong> {{ vm.usuario.updated_at | date}}</p>
+		<p><strong>Criado em:</strong> {{ vm.usuario.created_at | date}}</p>
+	</md-card-content>
+	<md-card-actions layout="row" layout-align="end center">
+	  <md-button href="#/usuarios/{{vm.usuario._id}}/edit/" class="md-raised md-primary">Editar</md-button>
+	  <md-button class="md-raised md-warn" ng-click="vm.remove(vm.usuario._id)">Excluir</md-button>
+	</md-card-actions>
+	</md-card>
 
-  <pre>
-    {{vm.usuario}}
-  </pre>
-
-  <a href="#/usuarios/{{vm.usuario._id}}/edit/">Editar</a>
 </div>
